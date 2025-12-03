@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生時代 | Hiroyuki's Digital Archive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #e1e8ed;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        header .breadcrumb {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        header .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transition: border-color 0.3s;
+        }
+
+        header .breadcrumb a:hover {
+            border-bottom-color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        article {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--primary-color);
+            margin: 2.5rem 0 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            margin: 1rem 0;
+            line-height: 1.9;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.9;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: var(--bg-color);
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--primary-color);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            article {
+                padding: 2rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>学生時代</h1>
+        <p class="breadcrumb">
+            <a href="../index.html">Home</a> / <a href="../index.html#profile">Profile</a> / 学生時代
+        </p>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2>大学時代の探求</h2>
+            
+            <p>
+                大学では経済学を学びながら、数学と論理的思考の基礎を築いた。
+                学部の授業では経済理論やファイナンスに関心を持ったが、
+                それ以上に魅力を感じたのは、問題を定式化し、
+                論理的に解決に導くプロセスそのものだった。
+            </p>
+
+            <p>
+                この時期から、独学でプログラミングを学び始める。
+                最初はPythonから始め、徐々にアルゴリズムとデータ構造の世界に魅了されていった。
+                大学の図書館で見つけた『アルゴリズムイントロダクション』は、
+                私の思考方法に大きな影響を与えた一冊となった。
+            </p>
+
+            <h3>数学への情熱</h3>
+            
+            <p>
+                経済学を学ぶ中で、統計学や最適化理論に触れ、
+                数学の美しさと実用性の両立に強い興味を持つようになった。
+                特に、複雑な現実問題を数式でモデル化し、
+                解析的に解を求めるプロセスに深い充足感を覚えた。
+            </p>
+
+            <blockquote>
+                「数学は言語である。それも、最も精緻で曖昧さのない言語だ。」
+            </blockquote>
+
+            <p>
+                この認識が、後の税務計算ツールやシミュレーションアプリ開発の
+                基礎となる考え方を形成した。
+            </p>
+
+            <h2>研究活動と学外活動</h2>
+
+            <h3>ゼミでの研究</h3>
+
+            <p>
+                経済学のゼミでは、行動経済学と意思決定理論について研究を行った。
+                人間の非合理的な行動パターンと、それを説明する理論モデルの研究は、
+                後に投資哲学を形成する上での重要な素地となった。
+            </p>
+
+            <p>
+                卒業論文では「長期投資における心理的バイアスの影響」をテーマに選び、
+                実証研究を行った。この研究を通じて、以下の重要な洞察を得た：
+            </p>
+
+            <ul>
+                <li>短期的な市場変動に対する過剰反応の危険性</li>
+                <li>確証バイアスが投資判断に与える影響</li>
+                <li>システマティックなアプローチの重要性</li>
+                <li>感情と論理のバランスの難しさ</li>
+            </ul>
+
+            <h3>プログラミングサークル</h3>
+
+            <p>
+                学外では、プログラミングサークルに参加し、
+                同じ興味を持つ仲間たちと切磋琢磨した。
+                週末には集まってハッカソンを開催し、
+                短時間で動くプロトタイプを作る訓練を重ねた。
+            </p>
+
+            <p>
+                この時期に学んだ「完璧を目指すよりまず動くものを作る」という思想は、
+                現在の単一ファイルHTML実装という手法につながっている。
+            </p>
+
+            <h2>形成された価値観</h2>
+
+            <h3>論理的思考と実証的アプローチ</h3>
+
+            <p>
+                大学での学びを通じて、感覚や直感だけに頼らず、
+                データと論理に基づいて判断することの重要性を深く理解した。
+                同時に、完全な情報が得られない状況でも、
+                利用可能な情報から最善の判断を下す力も養われた。
+            </p>
+
+            <h3>長期的視点での学習と成長</h3>
+
+            <p>
+                4年間という限られた時間の中で、
+                すぐに役立つスキルよりも、長期的に応用可能な基礎力を
+                重視する姿勢が自然と身についた。
+            </p>
+
+            <blockquote>
+                「短期的な結果ではなく、長期的な成長こそが真の価値を生む。」
+            </blockquote>
+
+            <p>
+                この考え方は、現在の投資哲学や人生設計の根幹をなしている。
+            </p>
+
+            <h3>理論と実践の両立</h3>
+
+            <p>
+                経済理論の学習とプログラミングの実践を通じて、
+                抽象的な理論と具体的な実装の両方が重要であることを学んだ。
+                理論だけでは現実に対応できず、実践だけでは体系的な理解が得られない。
+                この両者のバランスこそが、真の問題解決能力につながると確信した。
+            </p>
+
+            <h2>学生時代が残したもの</h2>
+
+            <p>
+                学生時代に形成された思考の枠組みは、
+                その後のキャリアにおいて一貫して私を支えてきた。
+                税理士として働く際の論理的アプローチ、
+                投資戦略を考える際の長期的視点、
+                Web開発における実用性の追求、
+                これらすべての根底には、学生時代に培った価値観がある。
+            </p>
+
+            <p>
+                また、この時期に出会った人々、読んだ本、経験した失敗と成功は、
+                人生の重要な転換点における判断の指針となっている。
+            </p>
+
+            <p>
+                学生時代は、知識を得る期間であると同時に、
+                人生を通じて使える「考え方」を獲得する期間だったと、
+                今振り返って強く感じている。
+            </p>
+
+            <a href="../index.html#profile" class="back-link">← プロフィール一覧に戻る</a>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hiroyuki's Digital Archive. All rights reserved.</p>
+    </footer>
+</body>
+</html>

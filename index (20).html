@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiroyuki's Digital Archive</title>
+    <style>
+        /* ==================== 基本設定 ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #e1e8ed;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ==================== ヘッダー ==================== */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* ==================== コンテナ ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== セクション共通 ==================== */
+        section {
+            margin: 4rem 0;
+            padding: 3rem 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        section .section-description {
+            color: var(--text-secondary);
+            margin: 1rem 0 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* ==================== ジャンルボタン ==================== */
+        .genre-buttons, .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .genre-btn, .category-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+        }
+
+        .genre-btn:hover, .category-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .genre-btn.active, .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* ==================== アプリグリッド ==================== */
+        .apps-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .apps-grid.active {
+            display: grid;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .app-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .app-info {
+            padding: 1.5rem;
+        }
+
+        .app-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .app-info p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==================== 哲学・知恵リスト ==================== */
+        .wisdom-list {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .wisdom-list.active {
+            display: block;
+        }
+
+        .wisdom-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .wisdom-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateX(4px);
+        }
+
+        .wisdom-item h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .wisdom-item p {
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .wisdom-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .wisdom-item a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* ==================== プロフィールセクション ==================== */
+        .profile-section {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        .profile-content {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .profile-content h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .profile-content p {
+            margin: 1.2rem 0;
+            line-height: 1.9;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .profile-content .read-more {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .profile-content .read-more:hover {
+            background: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        /* ==================== AIプロンプトベース ==================== */
+        .ai-prompts {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .prompt-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .prompt-card {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .prompt-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+
+        .prompt-card h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .prompt-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .prompt-card a {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .prompt-card a:hover {
+            background: var(--primary-color);
+        }
+
+        /* ==================== フッター ==================== */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ==================== レスポンシブ ==================== */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .profile-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .genre-buttons, .category-buttons {
+                flex-direction: column;
+            }
+
+            .genre-btn, .category-btn {
+                width: 100%;
+            }
+        }
+
+        /* ==================== 装飾要素 ==================== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 3rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1>Hiroyuki's Digital Archive</h1>
+        <p class="subtitle">思考と創造の記録 — A Chronicle of Ideas and Creations</p>
+    </header>
+
+    <div class="container">
+        <!-- ウェブアプリ・ツール -->
+        <section id="web-apps">
+            <h2>Web Applications & Tools</h2>
+            <p class="section-description">
+                これまで開発してきた50以上のWebアプリケーションとツール群。
+                パズルゲーム、数学ツール、計算機など多岐にわたる創造物をジャンル別に展示。
+            </p>
+
+            <!-- ジャンルボタン -->
+            <!-- 新しいジャンルを追加する場合: 以下のボタンを追加し、対応する apps-grid を作成してください -->
+            <div class="genre-buttons">
+                <button class="genre-btn" data-genre="puzzle">パズルゲーム</button>
+                <button class="genre-btn" data-genre="math">数学ツール</button>
+                <button class="genre-btn" data-genre="calculator">計算機</button>
+                <button class="genre-btn" data-genre="entertainment">エンターテイメント</button>
+                <button class="genre-btn" data-genre="business">ビジネスツール</button>
+                <button class="genre-btn" data-genre="productivity">生産性向上</button>
+                <!-- 新ジャンル追加例: <button class="genre-btn" data-genre="education">教育ツール</button> -->
+            </div>
+
+            <!-- パズルゲーム -->
+            <!-- 新しいアプリを追加: app-card をコピーして、リンク・タイトル・説明・アイコンを変更 -->
+            <div class="apps-grid" data-genre="puzzle">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">🧩</div>
+                    <div class="app-info">
+                        <h3>クロツキパズル</h3>
+                        <p>古典的なスライディングブロックパズル。最適解を見つけ出す思考ゲーム。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">📦</div>
+                    <div class="app-info">
+                        <h3>倉庫番ソルバー</h3>
+                        <p>倉庫番パズルの自動解法アルゴリズムを実装。複雑な問題も解決。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数学ツール -->
+            <div class="apps-grid" data-genre="math">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">∑</div>
+                    <div class="app-info">
+                        <h3>数列解析ツール</h3>
+                        <p>数列のパターン認識と解析を行う高度な数学ツール。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">∫</div>
+                    <div class="app-info">
+                        <h3>微積分計算機</h3>
+                        <p>微分・積分の計算を視覚的に表示。学習支援に最適。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 計算機 -->
+            <div class="apps-grid" data-genre="calculator">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">💰</div>
+                    <div class="app-info">
+                        <h3>相続税計算機</h3>
+                        <p>複雑な相続税の計算を正確に行うプロフェッショナルツール。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">📊</div>
+                    <div class="app-info">
+                        <h3>投資シミュレーター</h3>
+                        <p>NISA、iDeCoを含む長期投資戦略のシミュレーション。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- エンターテイメント -->
+            <div class="apps-grid" data-genre="entertainment">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">🎮</div>
+                    <div class="app-info">
+                        <h3>脳トレゲーム</h3>
+                        <p>認知能力を鍛える多様なミニゲーム集。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">🎯</div>
+                    <div class="app-info">
+                        <h3>記憶力テスト</h3>
+                        <p>短期記憶と作業記憶を測定・トレーニング。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ビジネスツール -->
+            <div class="apps-grid" data-genre="business">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">📈</div>
+                    <div class="app-info">
+                        <h3>家計予算シミュレーター</h3>
+                        <p>長期的な家計収支を詳細にシミュレート。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">🏢</div>
+                    <div class="app-info">
+                        <h3>不動産評価ツール</h3>
+                        <p>相続税評価額の計算を支援する専門ツール。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生産性向上 -->
+            <div class="apps-grid" data-genre="productivity">
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">📝</div>
+                    <div class="app-info">
+                        <h3>YouTube文字起こし解析</h3>
+                        <p>動画の文字起こしを解析し、要約を生成。</p>
+                    </div>
+                </div>
+                <div class="app-card" onclick="window.open('#', '_blank')">
+                    <div class="app-thumbnail">⏱️</div>
+                    <div class="app-info">
+                        <h3>タスク管理システム</h3>
+                        <p>効率的なタスク管理とプロジェクト追跡。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 哲学・知恵 -->
+        <section id="wisdom">
+            <h2>Philosophy & Wisdom</h2>
+            <p class="section-description">
+                長年の思考と経験から獲得した人生哲学、投資哲学、税務の知恵などを体系的に保存。
+            </p>
+
+            <!-- カテゴリボタン -->
+            <!-- 新しいカテゴリを追加する場合: 以下のボタンを追加し、対応する wisdom-list を作成してください -->
+            <div class="category-buttons">
+                <button class="category-btn" data-category="life">人生哲学</button>
+                <button class="category-btn" data-category="investment">投資哲学</button>
+                <button class="category-btn" data-category="tax">税務の知恵</button>
+                <button class="category-btn" data-category="math">数学的思考</button>
+                <button class="category-btn" data-category="technology">技術と創造</button>
+                <!-- 新カテゴリ追加例: <button class="category-btn" data-category="business">ビジネス戦略</button> -->
+            </div>
+
+            <!-- 人生哲学 -->
+            <!-- 新しい項目を追加: wisdom-item をコピーして、タイトル・説明・リンクを変更 -->
+            <div class="wisdom-list" data-category="life">
+                <div class="wisdom-item">
+                    <h4>長期思考の重要性</h4>
+                    <p>短期的な利益に惑わされず、持続可能な価値創造を目指す考え方について。</p>
+                    <a href="./wisdom/life/long-term-thinking.html" target="_blank">→ 詳細を読む</a>
+                </div>
+                <div class="wisdom-item">
+                    <h4>自動化と効率化の哲学</h4>
+                    <p>人間の介入を最小化し、システムが自律的に機能する設計思想。</p>
+                    <a href="./wisdom/life/automation-philosophy.html" target="_blank">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 投資哲学 -->
+            <div class="wisdom-list" data-category="investment">
+                <div class="wisdom-item">
+                    <h4>S&P500神話の検証</h4>
+                    <p>AI投資競争と市場構造変化が示唆する新しい投資環境への対応。</p>
+                    <a href="./wisdom/investment/sp500-myth.html" target="_blank">→ 詳細を読む</a>
+                </div>
+                <div class="wisdom-item">
+                    <h4>資産分散の実践知</h4>
+                    <p>理論と実践の狭間で見出した、現実的な資産配分戦略。</p>
+                    <a href="./wisdom/investment/asset-allocation.html" target="_blank">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 税務の知恵 -->
+            <div class="wisdom-list" data-category="tax">
+                <div class="wisdom-item">
+                    <h4>相続税対策の本質</h4>
+                    <p>高齢者の資産承継における実務的アプローチと落とし穴。</p>
+                    <a href="./wisdom/tax/inheritance-strategy.html" target="_blank">→ 詳細を読む</a>
+                </div>
+                <div class="wisdom-item">
+                    <h4>不動産評価の実務</h4>
+                    <p>東京都心部の高額物件評価で培った専門知識。</p>
+                    <a href="./wisdom/tax/real-estate-valuation.html" target="_blank">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 数学的思考 -->
+            <div class="wisdom-list" data-category="math">
+                <div class="wisdom-item">
+                    <h4>アルゴリズム設計の美学</h4>
+                    <p>効率的で美しいアルゴリズムを追求する思考プロセス。</p>
+                    <a href="./wisdom/math/algorithm-aesthetics.html" target="_blank">→ 詳細を読む</a>
+                </div>
+                <div class="wisdom-item">
+                    <h4>数学パズルの解法戦略</h4>
+                    <p>複雑なパズル問題に対する体系的アプローチ。</p>
+                    <a href="./wisdom/math/puzzle-strategies.html" target="_blank">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 技術と創造 -->
+            <div class="wisdom-list" data-category="technology">
+                <div class="wisdom-item">
+                    <h4>モバイルファーストの設計思想</h4>
+                    <p>レスポンシブデザインとユーザビリティの実践的考察。</p>
+                    <a href="./wisdom/technology/mobile-first.html" target="_blank">→ 詳細を読む</a>
+                </div>
+                <div class="wisdom-item">
+                    <h4>単一ファイル実装の利点</h4>
+                    <p>レンタルサーバーでの長期運用を見据えた設計判断。</p>
+                    <a href="./wisdom/technology/single-file-design.html" target="_blank">→ 詳細を読む</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- プロフィール -->
+        <section id="profile">
+            <h2>Profile / プロフィール</h2>
+            <p class="section-description">
+                学生時代から現在まで、そして趣味や資産形成の軌跡を時系列・テーマ別に記録。
+            </p>
+
+            <!-- プロフィールカテゴリボタン -->
+            <!-- 新しいプロフィールカテゴリを追加する場合: 以下のボタンを追加し、対応する profile-section を作成してください -->
+            <div class="category-buttons">
+                <button class="category-btn profile-btn" data-profile="student">学生時代</button>
+                <button class="category-btn profile-btn" data-profile="company">会社員時代</button>
+                <button class="category-btn profile-btn" data-profile="independent">独自の活動</button>
+                <button class="category-btn profile-btn" data-profile="asset">資産維持拡大</button>
+                <button class="category-btn profile-btn" data-profile="hobby">趣味</button>
+                <!-- 新カテゴリ追加例: <button class="category-btn profile-btn" data-profile="family">家族</button> -->
+            </div>
+
+            <!-- 学生時代 -->
+            <!-- 新しいプロフィールセクションを追加: profile-section をコピーして内容を変更 -->
+            <div class="profile-section" data-profile="student">
+                <div class="profile-content">
+                    <h3>学びの基礎</h3>
+                    <p>
+                        大学時代は数学と経済学を中心に学び、論理的思考の基礎を築いた。
+                        特にアルゴリズムと統計学に強い関心を持ち、プログラミングの世界に足を踏み入れた。
+                    </p>
+                    <p>
+                        学生生活の中で、問題を体系的に分解し、最適解を探求する姿勢が形成された。
+                        この時期に培った思考法が、後の税理士業務やWeb開発の礎となっている。
+                    </p>
+                    <a href="./profile/student.html" class="read-more">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 会社員時代 -->
+            <div class="profile-section" data-profile="company">
+                <div class="profile-content">
+                    <h3>実務経験の蓄積</h3>
+                    <p>
+                        慶應不動産での施設管理業務を通じて、不動産実務の現場を経験。
+                        物件管理、テナント対応、収支管理など、実践的なスキルを習得した。
+                    </p>
+                    <p>
+                        この経験は後に税理士として不動産評価や資産管理のコンサルティングを行う際の
+                        貴重な実務知識となり、理論と現場の橋渡しを可能にした。
+                    </p>
+                    <a href="./profile/company.html" class="read-more">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 独自の活動 -->
+            <div class="profile-section" data-profile="independent">
+                <div class="profile-content">
+                    <h3>創造と実践</h3>
+                    <p>
+                        税理士として独立後、不動産・相続税に特化した専門性を深めながら、
+                        Web開発とプログラミングのスキルを活かした独自の活動を展開。
+                    </p>
+                    <p>
+                        50以上のWebアプリケーションを開発し、数学パズル、計算ツール、
+                        金融シミュレーターなど多岐にわたる創造物を世に送り出してきた。
+                        技術と専門知識の融合が、独自の価値創造につながっている。
+                    </p>
+                    <a href="./profile/independent.html" class="read-more">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 資産維持拡大 -->
+            <div class="profile-section" data-profile="asset">
+                <div class="profile-content">
+                    <h3>投資戦略と実践</h3>
+                    <p>
+                        税理士として顧客の資産形成を支援する一方、自身も投資戦略を実践。
+                        S&P500神話を検証し、AI投資競争下での新しい市場環境に対応した
+                        ポートフォリオ構築を追求している。
+                    </p>
+                    <p>
+                        NISA、iDeCoを活用した長期投資戦略と、相続税対策を組み合わせた
+                        包括的な資産管理アプローチを実践。理論と実務の両面から
+                        最適解を探求し続けている。
+                    </p>
+                    <a href="./profile/asset.html" class="read-more">→ 詳細を読む</a>
+                </div>
+            </div>
+
+            <!-- 趣味 -->
+            <div class="profile-section" data-profile="hobby">
+                <div class="profile-content">
+                    <h3>知的好奇心の探求</h3>
+                    <p>
+                        数学パズル、アルゴリズム設計、ゲーム開発を趣味として追求。
+                        特にクロツキパズル、倉庫番などの古典的パズルの最適解を探る過程に
+                        深い喜びを見出している。
+                    </p>
+                    <p>
+                        Web開発においては、モバイルファーストの設計思想を重視し、
+                        単一ファイルでの実装による長期運用可能性を追求。
+                        趣味と実益を兼ねた創造活動を継続している。
+                    </p>
+                    <a href="./profile/hobby.html" class="read-more">→ 詳細を読む</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- AI用プロンプトベース -->
+        <section id="ai-prompts">
+            <h2>AI Prompt Base</h2>
+            <p class="section-description">
+                生成AIに読み込ませることで、私の思考や応答スタイルを再現するためのベースファイル。
+            </p>
+
+            <div class="ai-prompts">
+                <div class="prompt-links">
+                    <div class="prompt-card">
+                        <h4>プライベート用プロンプト</h4>
+                        <p>
+                            個人的な思考パターン、趣味、人生観、日常的な判断基準を含む
+                            包括的なプロンプトベース。
+                        </p>
+                        <a href="./prompts/private-base.html" target="_blank">表示する</a>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>業務用プロンプト</h4>
+                        <p>
+                            税務会計の専門知識、不動産評価のアプローチ、
+                            ビジネス判断の基準を体系化したプロンプトベース。
+                        </p>
+                        <a href="./prompts/business-base.html" target="_blank">表示する</a>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; color: var(--text-secondary); font-size: 0.95rem;">
+                    ※これらのファイルをClaude等の生成AIに読み込ませることで、
+                    私の思考プロセスや応答スタイルに近い出力が得られます。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2024 Hiroyuki's Digital Archive. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            このサイトは思考と創造の記録であり、最終的には墓標となる場所です。
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ==================== ジャンル切替 ====================
+        document.querySelectorAll('.genre-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const genre = this.dataset.genre;
+                
+                // ボタンのアクティブ状態を切り替え
+                document.querySelectorAll('.genre-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // 対応するグリッドを表示
+                document.querySelectorAll('.apps-grid').forEach(grid => {
+                    grid.classList.remove('active');
+                });
+                document.querySelector(`.apps-grid[data-genre="${genre}"]`).classList.add('active');
+                
+                // スムーズスクロール
+                document.querySelector(`.apps-grid[data-genre="${genre}"]`).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            });
+        });
+
+        // ==================== カテゴリ切替（哲学・知恵用） ====================
+        document.querySelectorAll('.category-btn:not(.profile-btn)').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // ボタンのアクティブ状態を切り替え（哲学・知恵のみ）
+                const parentSection = this.closest('section');
+                parentSection.querySelectorAll('.category-btn:not(.profile-btn)').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // 対応するリストを表示
+                parentSection.querySelectorAll('.wisdom-list').forEach(list => {
+                    list.classList.remove('active');
+                });
+                parentSection.querySelector(`.wisdom-list[data-category="${category}"]`).classList.add('active');
+                
+                // スムーズスクロール
+                parentSection.querySelector(`.wisdom-list[data-category="${category}"]`).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            });
+        });
+
+        // ==================== プロフィールカテゴリ切替 ====================
+        document.querySelectorAll('.profile-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const profile = this.dataset.profile;
+                
+                // ボタンのアクティブ状態を切り替え
+                document.querySelectorAll('.profile-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // 対応するセクションを表示
+                document.querySelectorAll('.profile-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.querySelector(`.profile-section[data-profile="${profile}"]`).classList.add('active');
+                
+                // スムーズスクロール
+                document.querySelector(`.profile-section[data-profile="${profile}"]`).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            });
+        });
+
+        // ==================== スムーズスクロール（アンカーリンク用） ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
